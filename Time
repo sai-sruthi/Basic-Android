@@ -1,0 +1,42 @@
+package com.example.helloworld;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.widget.TimePicker;
+import android.widget.TimePicker.OnTimeChangedListener;
+import android.widget.Toast;
+
+public class TimeActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_time);
+		TimePicker tp= (TimePicker)findViewById(R.id.timePicker1);
+		tp.setOnTimeChangedListener(new OnTimeChangedListener() {
+			
+			@Override
+			public void onTimeChanged(TimePicker tp, int houroftheday, int minute) {
+				// TODO Auto-generated method stub
+				String s=houroftheday+":"+minute;
+				Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+			}
+		});
+		
+	}
+	public void timePick(View v){
+		TimePicker tp= (TimePicker)findViewById(R.id.timePicker1);
+		tp.setVisibility(View.VISIBLE);
+		
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.time, menu);
+		return true;
+	}
+
+}
