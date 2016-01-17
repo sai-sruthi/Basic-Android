@@ -1,0 +1,63 @@
+package com.example.helloworld;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.PopupMenu;
+import android.widget.Toast;
+
+public class PopupMenuActivity extends Activity {
+	Button btn;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_popup_menu);
+		btn=(Button)findViewById(R.id.btnpop);
+		btn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				PopupMenu popup=new PopupMenu(getApplicationContext(), btn);
+				popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+				
+				popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+					
+					@Override
+					public boolean onMenuItemClick(MenuItem item) {
+						// TODO Auto-generated method stub
+						//Toast.makeText(this, "You Clicked "+item.getTitle(), Toast.LENGTH_LONG).show();
+						switch(item.getItemId())
+						
+						{
+						case R.id.popitem1:
+							Toast.makeText(getApplicationContext(),"One", Toast.LENGTH_LONG).show();
+							break;
+						case R.id.popitem2:
+							Toast.makeText(getApplicationContext(),"Two", Toast.LENGTH_LONG).show();
+							break;
+						case R.id.popitem3:
+							Toast.makeText(getApplicationContext(),"Three", Toast.LENGTH_LONG).show();
+							break;
+						
+						}
+						return true;
+				}
+				});
+				popup.show();
+			}
+		});
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.popup_menu, menu);
+		return true;
+	}
+
+}
