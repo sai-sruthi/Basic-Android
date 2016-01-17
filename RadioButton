@@ -1,0 +1,48 @@
+package com.example.helloworld;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+
+public class Radio1Activity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_radio1);
+	RadioGroup rg=(RadioGroup)findViewById(R.id.group1);
+	rg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		
+		@Override
+		public void onCheckedChanged(RadioGroup group, int checkid) {
+			// TODO Auto-generated method stub
+			RadioButton rb=(RadioButton)group.findViewById(checkid);
+			Toast.makeText(getApplicationContext(), rb.getText(), Toast.LENGTH_SHORT).show();
+		}
+	});
+	}
+
+	public void On_submit(View v)
+	{
+		RadioGroup rg=(RadioGroup)findViewById(R.id.group1);
+		RadioButton rb=(RadioButton)findViewById(rg.getCheckedRadioButtonId());
+		Toast.makeText(getApplicationContext(), rb.getText(), Toast.LENGTH_LONG).show();
+	}
+	public void On_clear(View v)
+	{
+		RadioGroup rg=(RadioGroup)findViewById(R.id.group1);
+		rg.clearCheck();
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.radio1, menu);
+		return true;
+	}
+
+}
