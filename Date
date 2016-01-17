@@ -1,0 +1,47 @@
+package com.example.helloworld;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.widget.CalendarView;
+import android.widget.CalendarView.OnDateChangeListener;
+import android.widget.DatePicker;
+import android.widget.Toast;
+
+public class DateActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_date);
+		DatePicker dp=(DatePicker)findViewById(R.id.datePicker1);
+		CalendarView cv=dp.getCalendarView();
+		cv.setOnDateChangeListener(new OnDateChangeListener() {
+			
+			@Override
+			public void onSelectedDayChange(CalendarView cv, int year, int month,
+					int day) {
+				// TODO Auto-generated method stub
+				String s=day+"/"+(month+1)+"/"+year;
+				Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+				
+			}
+		});
+		
+	}
+	public void datePick(View v){
+		DatePicker dp=(DatePicker)findViewById(R.id.datePicker1);
+		dp.setVisibility(View.VISIBLE);
+		
+		
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.date, menu);
+		return true;
+	}
+
+}
