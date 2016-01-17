@@ -1,0 +1,58 @@
+package com.example.helloworld;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class CheckBoxActivity extends Activity {
+
+	CheckBox chk1,chk2;
+	Button b1;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_check_box);
+addListenerOnClick();
+	}
+	public void addListenerOnClick()
+	{
+		chk1=(CheckBox)findViewById(R.id.checkBox1);
+				chk2=(CheckBox)findViewById(R.id.checkBox2);
+		b1=(Button)findViewById(R.id.btnbill);
+		b1.setOnClickListener(new OnClickListener()
+		{
+			public void onClick(View v)
+			{
+				StringBuilder sb=new StringBuilder();
+				int amt=0;
+				if(chk1.isChecked())
+				{
+					sb.append("Pizza=70Rs\n");
+					amt+=70;
+				}
+				if(chk2.isChecked())
+				{
+					sb.append("Burger=50Rs\n");
+					amt+=50;
+				}
+				sb.append("Total amount=" + amt);
+				Toast.makeText(getApplicationContext(), sb, Toast.LENGTH_LONG).show();
+			}
+		}
+
+				);
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.check_box, menu);
+		return true;
+	}
+
+}
